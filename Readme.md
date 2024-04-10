@@ -1,3 +1,5 @@
+[![Pylint](https://github.com/kwidoo/pma-config/actions/workflows/pylint.yml/badge.svg)](https://github.com/kwidoo/pma-config/actions/workflows/pylint.yml)
+
 # PHPMyAdmin Config File Generator
 
 Simple tool to quickly generate PHPMyAdmin configuration files. This tool is built using Flask and Tailwind CSS. Don't expect much.
