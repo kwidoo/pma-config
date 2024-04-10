@@ -39,7 +39,8 @@ def fetch_all_server_data_as_dicts(conn):
 def upsert_server_data(conn, server_data):
     """
     Insert or update form data into the server_data table.
-    The server_data should include nine elements: (id, name, auth_type, host, port, user, password, compress, allow_no_password).
+    The server_data should include nine elements:
+    (id, name, auth_type, host, port, user, password, compress, allow_no_password).
     If id is None, a new record is created.
     """
     if len(server_data) != 9:

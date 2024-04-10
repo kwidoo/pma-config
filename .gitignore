@@ -4,3 +4,5 @@ configs/*.php
 .env
 seeder.py
 .stignore
+__pycache__
+database.db

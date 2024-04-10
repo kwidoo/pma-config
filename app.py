@@ -70,10 +70,21 @@ def save_server():
     port = request.form.get('port')
     user = request.form.get('user')
     password = request.form.get('password')
-    compress = 1 if request.form.get('compress', 'false').lower() in ['true', '1', 't', 'y', 'yes'] else 0
-    allow_no_password = 1 if request.form.get('allow_no_password', 'false').lower() in ['true', '1', 't', 'y', 'yes'] else 0
+    compress = 1 if request.form.get('compress', 'false').lower() in [
+        'true', '1', 't', 'y', 'yes'] else 0
+    allow_no_password = 1 if request.form.get('allow_no_password', 'false').lower() in [
+        'true', '1', 't', 'y', 'yes'] else 0
 
-    form_data_tuple = (server_id, name, auth_type, host, port, user, password, compress, allow_no_password)
+    form_data_tuple = (
+        server_id,
+        name,
+        auth_type,
+        host, port,
+        user,
+        password,
+        compress,
+        allow_no_password
+    )
 
     conn = create_connection()
     print(form_data_tuple)
@@ -123,7 +134,11 @@ def generate_master_config():
     template_dir = 'templates'
     env = Environment(loader=FileSystemLoader(template_dir))
     template = env.get_template('config_template.txt')
-    rendered_config = template.render(num_servers=num_servers, servers=servers, blowfish_secret=generate_blowfish_secret())
+    rendered_config = template.render(
+        num_servers=num_servers,
+        servers=servers,
+        blowfish_secret=generate_blowfish_secret()
+    )
 
     response = make_response(rendered_config)
     response.headers['Content-Disposition'] = 'attachment; filename=config.inc.php'
