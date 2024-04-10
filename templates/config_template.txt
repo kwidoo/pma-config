@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+$cfg['blowfish_secret'] = '{{ blowfish_secret }}';
+
+$i = 1;
+{% for i in range(num_servers) %}
+$cfg['Servers'][$i]['verbose'] = '{{ servers[i].name }}';
+$cfg['Servers'][$i]['auth_type'] = '{{ servers[i].auth_type }}';
+$cfg['Servers'][$i]['host'] = '{{ servers[i].host }}';
+$cfg['Servers'][$i]['port'] = '{{ servers[i].port }}';
+$cfg['Servers'][$i]['user'] = '{{ servers[i].user }}';
+$cfg['Servers'][$i]['password'] = '{{ servers[i].password }}';
+$cfg['Servers'][$i]['compress'] = {{ servers[i].compress | lower }};
+$cfg['Servers'][$i]['AllowNoPassword'] = {{ servers[i].allow_no_password | lower }};
+$i++;
+{% endfor %}
+$cfg['UploadDir'] = '';
+$cfg['SaveDir'] = '';
+
+$cfg['MaxTableList'] = 5000;
+
+$cfg['MaxNavigationItems']=1000;
+
+?>

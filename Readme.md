@@ -6,9 +6,9 @@ Simple tool to quickly generate PHPMyAdmin configuration files. This tool is bui
 
 Before you begin, ensure you have the following installed on your system:
 
-- Node.js and npm (Node Package Manager)
 - Python 3.x
 - pip (Python Package Installer)
+- Optional: Node.js and npm (Node Package Manager)
 
 ## Getting Started
 
@@ -22,25 +22,7 @@ First, clone the repository to your local machine using Git:
 git clone git@github.com:kwidoo/pma-config.git
 ```
 
-### 2. Install Node.js Dependencies
-
-Navigate to the cloned repository's directory and run the following command to install the required Node.js dependencies:
-
-```bash
-npm install
-```
-
-This will install all the necessary npm packages defined in `package.json`.
-
-### 3. Build CSS
-
-After installing the npm packages, you need to build the CSS for the project. This step compiles the custom styles used by the application. Run the following command:
-
-```bash
-npm run build:css
-```
-
-### 4. Install Python Dependencies
+### 3. Install Python Dependencies
 
 The application requires certain Python libraries to function properly. Install them using pip:
 
@@ -50,6 +32,12 @@ pip install -r requirements.txt
 
 This command reads the `requirements.txt` file and installs all the Python dependencies listed there.
 
+## Create database
+
+```bash
+python install.py
+```
+
 ## Running the Application
 
 ```bash
@@ -57,6 +45,24 @@ python app.py
 ```
 
 By default it will start http server on port 5000. You can access the application by visiting `http://localhost:5000` in your browser.
+
+## Generate config.inc.php
+
+Click on the "Generate Config" button to generate the configuration file. The file will be downloaded to your system. Put it to your phpMyAdmin installation directory.
+
+## Optional: Install Tailwind CSS
+
+If you want to make changes to the CSS, you need to install Tailwind CSS. First, install the required Node.js packages:
+
+```bash
+npm install
+```
+
+Edit styles.css and run the following command to compile the CSS:
+
+```bash
+npm run build:css
+```
 
 ## TODO
 
@@ -66,7 +72,7 @@ By default it will start http server on port 5000. You can access the applicatio
 
 [ ] Expand the tool's interface to allow configuring a wider range of PHPMyAdmin options, increasing flexibility.
 
-[ ] Apply configurations to PHPMyAdmin automatically, avoiding manual copy/paste conifg.
+[ ] Apply configurations to PHPMyAdmin automatically, avoiding manual copy config file.
 
 ## License
 

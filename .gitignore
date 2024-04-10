@@ -1,3 +1,6 @@
 .venv
 node_modules
 configs/*.php
+.env
+seeder.py
+.stignore
