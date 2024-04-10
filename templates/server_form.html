@@ -1,0 +1,151 @@
+<!-- templates/server_form.html -->
+{% extends 'layout.html' %} {% block content %}
+<div class="max-w-4xl mx-auto my-10">
+  <form
+    action="{{ url_for('save_server') }}"
+    method="POST"
+    class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+  >
+    <!-- Verbose -->
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="verbose"
+      >
+        Server name
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="verbose"
+        name="verbose"
+        type="text"
+        placeholder="Server name"
+        value="{{ server.verbose if server else '' }}"
+      />
+    </div>
+
+    <!-- Auth Type -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="auth_type">
+          Authentication Type
+      </label>
+      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="auth_type" name="auth_type">
+          <option value="config" {% if server and server.auth_type == 'config' %}selected{% endif %}>Config</option>
+          <option value="password" {% if server and server.auth_type == 'password' %}selected{% endif %}>Password</option>
+      </select>
+    </div>
+
+
+    <!-- Host -->
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="host"
+      >
+        Host
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="host"
+        name="host"
+        type="text"
+        placeholder="Server host or IP address"
+        value="{{ server.host if server else '' }}"
+      />
+    </div>
+    <!-- Port -->
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="port"
+      >
+        Port
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="port"
+        name="port"
+        type="text"
+        placeholder="Server port"
+        value="{{ server.port if server else '' }}"
+      />
+    </div>
+
+    <!-- User -->
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="user"
+      >
+        User
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="user"
+        name="user"
+        type="text"
+        placeholder="Username"
+        autocomplete="off"
+        data-lpignore=true
+        value="{{ server.user if server else '' }}"
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="password"
+      >
+        Password
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+        id="password"
+        name="password"
+        type="password"
+        placeholder="Password"
+        autocomplete="off"
+        data-lpignore=true
+
+        value="{{ server.password if server else '' }}"
+      />
+    </div>
+
+    <!-- Compress -->
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="compress"
+      >
+      <input class="leading-tight" type="checkbox" id="compress" name="compress" {{ 'checked' if
+      server and server.compress else '' }}> Compress</label>
+    </div>
+
+    <!-- Allow No Password -->
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="allow_no_password"
+      >
+
+      <input class="leading-tight" type="checkbox" id="allow_no_password" name="allow_no_password"
+      {{ 'checked' if server and server.AllowNoPassword else '' }}>  Allow No Password
+    </label>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex items-center justify-between">
+      <a href="{{ url_for('server_panel') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Cancel
+      </a>
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit"
+      >
+        {{ 'Save' }}
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
